@@ -17,6 +17,19 @@
 import SwiftUI
 
 public struct Toast: Equatable {
+    
+    public init(
+        style: ToastStyle,
+        message: String,
+        duration: Double = 5,
+        width: Double = .infinity
+    ) {
+        self.style = style
+        self.message = message
+        self.duration = duration
+        self.width = width
+    }
+    
     var style: ToastStyle
     var message: String
     var duration: Double = 5
