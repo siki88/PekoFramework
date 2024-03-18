@@ -16,14 +16,14 @@
 
 import SwiftUI
 
-struct Toast: Equatable {
+public struct Toast: Equatable {
     var style: ToastStyle
     var message: String
     var duration: Double = 5
     var width: Double = .infinity
 }
 
-enum ToastStyle {
+public enum ToastStyle {
     case error
     case warning
     case success
@@ -31,7 +31,7 @@ enum ToastStyle {
 }
 
 @available(iOS 16.4, *)
-extension ToastStyle {
+public extension ToastStyle {
     var themeColor: Color {
         switch self {
         case .error: return Color.red
@@ -52,12 +52,12 @@ extension ToastStyle {
 }
 
 @available(iOS 16.4, *)
-struct ToastView: View {
+public struct ToastView: View {
     
-    var style: ToastStyle
-    var message: String
-    var width = CGFloat.infinity
-    var onCancelTapped: (() -> Void)
+    public var style: ToastStyle
+    public var message: String
+    public var width = CGFloat.infinity
+    public var onCancelTapped: (() -> Void)
     
     private var osTheme: UIUserInterfaceStyle {
         let overrideUserInterfaceStyle = UIApplication
@@ -68,7 +68,7 @@ struct ToastView: View {
         return overrideUserInterfaceStyle ?? UIScreen.main.traitCollection.userInterfaceStyle
     }
     
-    var body: some View {
+    public var body: some View {
         HStack(alignment: .center, spacing: 12) {
             Image(systemName: style.iconFileName)
                 .foregroundColor(style.themeColor)
@@ -101,12 +101,12 @@ struct ToastView: View {
 }
 
 @available(iOS 16.4, *)
-struct ToastModifier: ViewModifier {
+public struct ToastModifier: ViewModifier {
     
-    @Binding var toast: Toast?
+    @Binding public var toast: Toast?
     @State private var workItem: DispatchWorkItem?
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
@@ -164,7 +164,7 @@ struct ToastModifier: ViewModifier {
 }
 
 @available(iOS 16.4, *)
-extension View {
+public extension View {
     func toastView(showToast: Binding<Toast?>) -> some View {
         self.modifier(ToastModifier(toast: showToast))
     }
