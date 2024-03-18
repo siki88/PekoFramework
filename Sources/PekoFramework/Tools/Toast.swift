@@ -52,7 +52,7 @@ public extension ToastStyle {
 }
 
 @available(iOS 16.4, *)
-struct ToastView: View {
+public struct ToastView: View {
     
     public var style: ToastStyle
     public var message: String
@@ -101,7 +101,7 @@ struct ToastView: View {
 }
 
 @available(iOS 16.4, *)
-struct ToastModifier: ViewModifier {
+public struct ToastModifier: ViewModifier {
     
     @Binding public var toast: Toast?
     @State private var workItem: DispatchWorkItem?
