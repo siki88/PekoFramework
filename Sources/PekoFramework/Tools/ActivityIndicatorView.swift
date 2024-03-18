@@ -162,7 +162,7 @@ struct ActivityIndicatorModifier: ViewModifier {
 }
 
 @available(iOS 16.4, *)
-extension View {
+public extension View {
     func activityIndicatorView(isVisible: Binding<Bool>) -> some View {
         self.modifier(ActivityIndicatorModifier(isVisible: isVisible))
     }
