@@ -73,12 +73,7 @@ public struct ToastView: View {
     public var onCancelTapped: (() -> Void)
     
     private var osTheme: UIUserInterfaceStyle {
-        let overrideUserInterfaceStyle = UIApplication
-            .shared
-            .connectedScenes
-            .compactMap { ($0 as? UIWindowScene)?.keyWindow }
-            .last?.rootViewController?.overrideUserInterfaceStyle
-        return overrideUserInterfaceStyle ?? UIScreen.main.traitCollection.userInterfaceStyle
+        UIApplication.shared.userInterfaceStyle
     }
     
     public var body: some View {
@@ -87,7 +82,8 @@ public struct ToastView: View {
                 .foregroundColor(style.themeColor)
             Text(message)
                 .font(Font.caption)
-                .foregroundColor(osTheme == .light ? Color.black : Color.white)
+                .foregroundColor(Color.black)
+                //.foregroundColor(osTheme == .light ? Color.black : Color.white)
             
             Spacer(minLength: 10)
             
@@ -100,7 +96,7 @@ public struct ToastView: View {
         }
         .padding()
         .frame(minWidth: 0, maxWidth: width)
-        .background(osTheme == .light ? Color.white : Color.black)
+        .background(Color.white)
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
