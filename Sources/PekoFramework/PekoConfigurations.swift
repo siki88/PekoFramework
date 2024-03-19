@@ -6,13 +6,18 @@
 //
 
 import SwiftUI
+import Wormholy
 
 @available(iOS 16.4, *)
 public class PekoConfigurations: ObservableObject {
     
     public static var shared = PekoConfigurations()
     
-    public init() {}
+    public init() {
+        #if DEBUG
+            Wormholy.awake()
+        #endif
+    }
     
     // MARK: Toast
     @Published public var showToast: Toast? = nil

@@ -10,8 +10,12 @@ PekoFramework
         }
     }
     
-    Implement NEW NewtorkService to project
-    
+    Implement NEW NewtorkService to project !!!
+
+## Wormholy:
+    iOS network debugging
+    Enable for only DEBUG mode
+    Use: Zatřesením
 
 ## Toast:
     NewtorkService: When an error, show error toast
@@ -22,11 +26,11 @@ PekoFramework
 ## Activity Indicator:
     NewtorkService: Default setting enable start and stop activity indicator
 
-    Manually Show:
+    Manually Show/Hide:
         PekoConfigurations.shared.showActivityIndicator = true/false
 
 ## SharedActivityView:
-    Manually Show:
+    Manually Show/Hide:
         PekoConfigurations.shared.itemsSharedActivityView = Array(Any)
         PekoConfigurations.shared.showSharedActivityView = true/false
 
@@ -37,9 +41,11 @@ PekoFramework
     Setting:    
         PekoConfigurations.shared.selectedSourceCamera = .camera/photoLybrary  
          
-    Manually Show:    
-        PekoConfigurations.shared.showImagePickerActionSheet = true/false
-        PekoConfigurations.shared.showImagePicker = true/false
+    Manually Show/Hide: 
+        ActionSheet PopUp for selected:
+            PekoConfigurations.shared.showImagePickerActionSheet = true/false
+        Open selectedSourceCamera type:
+            PekoConfigurations.shared.showImagePicker = true/false
 
     Callback: onReceive OR combine
         .onReceive(PekoConfigurations.shared.$selectedImage.dropFirst()) { selectedImage in
