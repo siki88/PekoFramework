@@ -133,12 +133,8 @@ struct ActivityIndicatorModifier: ViewModifier {
             .overlay(
                 ZStack {
                     mainContentView()
-                        //.offset(y: 32)
-                }//.animation(.spring(), value: toast)
+                }
             )
-            //.onChange(of: toast) { value in
-            //    showToast()
-            //}
     }
     
     @ViewBuilder func mainContentView() -> some View {

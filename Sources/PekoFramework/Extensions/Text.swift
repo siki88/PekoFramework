@@ -11,13 +11,13 @@ import SwiftUI
 extension Text {
     init<S>(_ text: S) where S : StringProtocol {
         let text = String(text)
-        let translated = PekoConfigurations.shared.localizable(text)
-        self.init(verbatim: translated)
+        let translated: String = PekoConfigurations.shared.localizable(text)
+        self.init(verbatim: translated.isEmpty ? text : translated)
     }
     
     init(_ string: String, configure: ((inout AttributedString) -> Void)) {
-        let translated = PekoConfigurations.shared.localizable(string)
-        var attributedString = AttributedString(translated)
+        let translated: String = PekoConfigurations.shared.localizable(string)
+        var attributedString = AttributedString(translated.isEmpty ? string : translated)
         configure(&attributedString)
         self.init(attributedString)
     }
