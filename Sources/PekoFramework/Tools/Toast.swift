@@ -7,13 +7,6 @@
 
 //https://ondrej-kvasnovsky.medium.com/how-to-build-a-simple-toast-message-view-in-swiftui-b2e982340bd
 
-/*
- USES:
- AnyView {
-        }
-        .toastView(showToast: $showToast)
- */
-
 import SwiftUI
 
 public struct Toast: Equatable {

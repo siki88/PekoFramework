@@ -20,7 +20,6 @@ struct ImagePickerModifier: ViewModifier {
     @EnvironmentObject private var pekoConfigurations: PekoConfigurations
     
     @State var showPicker: Bool = false
-    //@State var showActionSheet: Bool = false
     
     func body(content: Content) -> some View {
         content

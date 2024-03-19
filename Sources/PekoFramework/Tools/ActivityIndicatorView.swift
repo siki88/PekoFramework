@@ -7,45 +7,37 @@
 
 // https://github.com/exyte/ActivityIndicatorView
 
-/*
- USES:
- AnyView {
-        }
-        .activityIndicatorView(isVisible: $showActivityIndicator)
- */
-
 import SwiftUI
 
 @available(iOS 16.4, *)
 public struct ActivityIndicatorView: View {
-
+    
     public enum IndicatorType {
         case `default`(count: Int = 8)
     }
-
+    
     @Binding var isVisible: Bool
     var color: Color = .red
     var type: IndicatorType
-
-    public init(isVisible: Binding<Bool>, color: Color = .red, type: IndicatorType = .default()) {
+    
+    public init(
+        isVisible: Binding<Bool>,
+        color: Color = .red,
+        type: IndicatorType = .default()
+    ) {
         _isVisible = isVisible
         self.type = type
         self.color = color
     }
-
+    
     public var body: some View {
-        indicator
-            .frame(width: 50, height: 50)
-            .foregroundColor(color)
-        /*
         if isVisible {
             indicator
                 .frame(width: 50, height: 50)
-                .foregroundColor(.ui.pink)
+                .foregroundColor(color)
         } else {
             EmptyView()
         }
-        */
     }
     
     // MARK: - Private
@@ -141,7 +133,7 @@ struct ActivityIndicatorModifier: ViewModifier {
         if isVisible {
             indicator
                 .frame(width: 50, height: 50)
-                .foregroundColor(.red)
+                .foregroundColor(PekoConfigurations.shared.colorActivityIndicator)
         } else {
             EmptyView()
         }

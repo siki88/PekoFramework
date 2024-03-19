@@ -15,7 +15,7 @@ private struct SafeAreaInsetsKey: EnvironmentKey {
 }
 
 @available(iOS 16.4, *)
-extension EnvironmentValues {
+public extension EnvironmentValues {
     var safeAreaInsets: EdgeInsets {
         self[SafeAreaInsetsKey.self]
     }

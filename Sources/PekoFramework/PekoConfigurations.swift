@@ -5,8 +5,7 @@
 //  Created by Lukáš Spurný on 18.03.2024.
 //
 
-import Foundation
-import UIKit.UIImage
+import SwiftUI
 
 @available(iOS 16.4, *)
 public class PekoConfigurations: ObservableObject {
@@ -15,17 +14,24 @@ public class PekoConfigurations: ObservableObject {
     
     public init() {}
     
+    // MARK: Toast
     @Published public var showToast: Toast? = nil
+    
+    // MARK: Activity indicator
+    @Published public var colorActivityIndicator: Color = .red
     @Published public var showActivityIndicator: Bool = false
     
+    // MARK: Shared
     @Published public var showSharedActivityView: Bool = false
     @Published public var itemsSharedActivityView: [Any]? = nil
     
+    // MARK: Image picker
     @Published public var showImagePickerActionSheet: Bool = false
     @Published public var showImagePicker: Bool = false
     @Published public var selectedImage: UIImage? = nil
     @Published public var selectedSourceCamera: UIImagePickerController.SourceType = .camera
     
+    // MARK: PHPicker
     @Published public var selectionLimitPHPicker: Int = 1
     @Published public var showPHPicker: Bool = false
     @Published public var selectedImages: [UIImage]? = nil

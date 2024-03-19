@@ -10,7 +10,7 @@ PekoFramework
         }
     }
     
-    Implement NewtorkService to project
+    Implement NEW NewtorkService to project
     
 
 ## Toast:
@@ -34,20 +34,35 @@ PekoFramework
     Setting / Implement plist:
         Privacy - Camera Usage Description -> Aplikace žádá o přístup k fotoaparátu
         
+    Setting:    
+        PekoConfigurations.shared.selectedSourceCamera = .camera/photoLybrary  
+         
     Manually Show:    
         PekoConfigurations.shared.showImagePickerActionSheet = true/false
         PekoConfigurations.shared.showImagePicker = true/false
-    Setting:    
-        PekoConfigurations.shared.selectedSourceCamera = .camera/photoLybrary
+
     Callback: onReceive OR combine
         .onReceive(PekoConfigurations.shared.$selectedImage.dropFirst()) { selectedImage in
             print("👍 selectedImage: ",selectedImage)
         }
         
 ## PHPickerView: Image Gallery(select more image)
+    Setting:    
+        PekoConfigurations.shared.selectionLimitPHPicker = Int
+      
+    Manually Show:
+        PekoConfigurations.shared.showPHPicker = true/false
         
+    Callback: onReceive OR combine
+        .onReceive(PekoConfigurations.shared.$selectedImages.dropFirst()) { selectedImages in
+            print("👍 selectedImages: ",selectedImages)
+        }
 
 TUDU:
-Setting color activity indicator
 SharedActivityView: impl onDismiss action ?
 ImagePicker: impl onDismiss action ?
+PHPicker: impl onDismiss action ?
+
+Impl: Apple login ?
+Impl: Google login ?
+Impl: Facebook login ?
