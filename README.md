@@ -47,10 +47,19 @@ PekoFramework
         Open selectedSourceCamera type:
             PekoConfigurations.shared.showImagePicker = true/false
 
-    Callback: onReceive OR combine
+    Callback: onReceive OR Combine
         .onReceive(PekoConfigurations.shared.$selectedImage.dropFirst()) { selectedImage in
             print("👍 selectedImage: ",selectedImage)
         }
+        
+        PekoConfigurations.shared.$selectedImage
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { weak self selectedImage in
+                guard let _ = self else { return }
+                print("👍 selectedImage: ",selectedImage)
+            }
+            .store(in: &cancellables)
         
 ## PHPickerView: Image Gallery(select more image)
     Setting:    
@@ -59,12 +68,22 @@ PekoFramework
     Manually Show:
         PekoConfigurations.shared.showPHPicker = true/false
         
-    Callback: onReceive OR combine
+    Callback: onReceive OR Combine
         .onReceive(PekoConfigurations.shared.$selectedImages.dropFirst()) { selectedImages in
             print("👍 selectedImages: ",selectedImages)
         }
+        
+        PekoConfigurations.shared.$selectedImages
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { weak self selectedImages in
+                guard let _ = self else { return }
+                print("👍 selectedImages: ",selectedImages)
+            }
+            .store(in: &cancellables)
 
-TUDU:
+## TUDU:
+
 SharedActivityView: impl onDismiss action ?
 ImagePicker: impl onDismiss action ?
 PHPicker: impl onDismiss action ?
