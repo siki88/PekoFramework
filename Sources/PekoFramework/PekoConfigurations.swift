@@ -8,9 +8,11 @@
 import Foundation
 
 @available(iOS 16.4, *)
-class PekoConfigurations: ObservableObject {
+public class PekoConfigurations: ObservableObject {
     
     static var shared = PekoConfigurations()
+    
+    public init() {}
     
     @Published var showToast: Toast? = nil
     @Published var showActivityIndicator: Bool = false
