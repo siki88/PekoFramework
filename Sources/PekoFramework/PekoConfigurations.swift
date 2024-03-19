@@ -10,16 +10,16 @@ import Foundation
 @available(iOS 16.4, *)
 public class PekoConfigurations: ObservableObject {
     
-    static var shared = PekoConfigurations()
+    public static var shared = PekoConfigurations()
     
     public init() {}
     
-    @Published var showToast: Toast? = nil
-    @Published var showActivityIndicator: Bool = false
+    @Published public var showToast: Toast? = nil
+    @Published public var showActivityIndicator: Bool = false
     
     // MARK: For implement localization text
     let identifier = Locale.current.language.languageCode?.identifier == "cs" || Locale.current.language.languageCode?.identifier == "sk" ? "cs" : "en"
-    func localizable(_ text: String) -> String {
+    public func localizable(_ text: String) -> String {
         guard let path = Bundle.main.path(forResource: identifier, ofType: "lproj"),
               let bundle = Bundle(path: path)else {
             return ""
