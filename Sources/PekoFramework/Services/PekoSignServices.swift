@@ -53,7 +53,11 @@ public class PekoSignServices: NSObject, ObservableObject, ASAuthorizationContro
     }
     
     public func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        PekoConfigurations.shared.showToast = Toast(style: .error, message: error.localizedDescription)
+        if error.errorCode == 1001 {
+            PekoConfigurations.shared.showToast = Toast(style: .error, message: "User cancel")
+        } else {
+            PekoConfigurations.shared.showToast = Toast(style: .error, message: error.localizedDescription)
+        }
     }
     
     func performAppleSignIn() {
