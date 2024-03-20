@@ -88,7 +88,12 @@ PekoFramework
             .store(in: &cancellables)
 
 ## Tools/Utility:
-    - CustomGridLayout: Alternative LazyVGrid
+    - PekoCustomContent
+    - PekoNavigationContent
+    - PekoCustomNavigationContent
+    
+    - CustomGridLayout: Alternative LazyVGrid column, not lazy
+        CustomGridLayout(array, numberOfColumns: 3) { result in
     
     - WrappingHStack: WrappingHStack is a UI Element that works in a very similar way to HStack, but automatically positions overflowing elements on next lines.
     
@@ -100,12 +105,11 @@ PekoFramework
             
     - RoundedCorner: 
             .cornerRadius(40, corners: [.topLeft, .topRight])
-            
-    - PekoCustomContent
-    - PekoNavigationContent
-    - PekoCustomNavigationContent
     
     - PekoBottomSheetView: rozdelane
+    
+    - SafeAreaInsets:
+        @Environment(\.safeAreaInsets) private var safeAreaInsets
     
     - KeyboardHeightHelper:
         @ObservedObject private var keyboardHeightHelper = KeyboardHeightHelper()
@@ -116,6 +120,36 @@ PekoFramework
     - ExpandableText: Read more AND Read less long text
         ExpandableText("TUDU",lineLimit: 3,font: UIFont.systemFont(ofSize: 15))
     
+    - ImagePinchZoomView: image zoom
+        image
+            .modifier(ImageModifier(contentSize: CGSize(width: proxy.size.width, height: proxy.size.height)))
+            
+## Sign:
+
+    ### Apple:
+        Manually Show:
+            PekoSignServices.shared.login(type: .apple)
+        Response:
+            PekoSignServices.shared.$appleCredential
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { weak self appleCredential in
+                guard let self = self, let appleCredential else { return }
+                let token = appleCredential.identityToken
+                print("🚀 appleCredential.identityToken: ",token)
+                print("🚀 appleCredential.identityToken base: ",token?.base64EncodedString())
+                if let token {
+                    print("🚀 appleCredential.identityToken encoding: ",String(data: token, encoding: .utf8))
+                }
+                print("🚀 appleCredential.email: ",appleCredential.email)
+                print("🚀 appleCredential.fullName: ",appleCredential.fullName)
+            }
+            .store(in: &cancellables)
+            
+    ### Google:
+    
+    ### Facebook:
+            
 ## TUDU:
 
 SharedActivityView: impl onDismiss action ?
