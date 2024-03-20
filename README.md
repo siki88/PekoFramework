@@ -30,16 +30,21 @@ PekoFramework
         PekoConfigurations.shared.showActivityIndicator = true/false
 
 ## SharedActivityView:
-    Manually Show/Hide:
+    Setting:
+    -- for manual array
         PekoConfigurations.shared.itemsSharedActivityView = Array(Any)
+    -- object for special image and text
+        PekoConfigurations.shared.shareableImageSharedActivityView
+
+    Manually Show/Hide:
         PekoConfigurations.shared.showSharedActivityView = true/false
 
 ## ImagePicker: Camera + Image Gallery(select single image)
-    Setting / Implement plist:
+    Implement plist:
         Privacy - Camera Usage Description -> Aplikace žádá o přístup k fotoaparátu
         
     Setting:    
-        PekoConfigurations.shared.selectedSourceCamera = .camera/photoLybrary  
+        PekoConfigurations.shared.selectedSourceCamera = .camera/photoLibrary  
          
     Manually Show/Hide: 
         ActionSheet PopUp for selected:
@@ -82,6 +87,35 @@ PekoFramework
             }
             .store(in: &cancellables)
 
+## Tools/Utility:
+    - CustomGridLayout: Alternative LazyVGrid
+    
+    - WrappingHStack: WrappingHStack is a UI Element that works in a very similar way to HStack, but automatically positions overflowing elements on next lines.
+    
+    - ActivityIndicatorView: ActivityIndicatorView(isVisible: Binding Bool, color: Color, type: IndicatorType)
+    
+    - DeviceRotation: 
+            .detectOrientation($orientation)
+            .onRotate { newOrientation in }
+            
+    - RoundedCorner: 
+            .cornerRadius(40, corners: [.topLeft, .topRight])
+            
+    - PekoCustomContent
+    - PekoNavigationContent
+    - PekoCustomNavigationContent
+    
+    - PekoBottomSheetView: rozdelane
+    
+    - KeyboardHeightHelper:
+        @ObservedObject private var keyboardHeightHelper = KeyboardHeightHelper()
+        
+    - ReflectedStringConvertible: logger printer:
+        class GamepanelResume: Codable, ReflectedStringConvertible {
+
+    - ExpandableText: Read more AND Read less long text
+        ExpandableText("TUDU",lineLimit: 3,font: UIFont.systemFont(ofSize: 15))
+    
 ## TUDU:
 
 SharedActivityView: impl onDismiss action ?

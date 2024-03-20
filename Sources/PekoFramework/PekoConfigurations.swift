@@ -38,6 +38,7 @@ public class PekoConfigurations: ObservableObject {
     
     // MARK: Shared
     @Published public var showSharedActivityView: Bool = false
+    @Published public var shareableImageSharedActivityView: ShareableImage? = nil
     @Published public var itemsSharedActivityView: [Any]? = nil
     
     // MARK: Image picker
@@ -50,6 +51,30 @@ public class PekoConfigurations: ObservableObject {
     @Published public var selectionLimitPHPicker: Int = 1
     @Published public var showPHPicker: Bool = false
     @Published public var selectedImages: [UIImage]? = nil
+    
+    public func convertUrlsToUIImages(urls: [URL],_ completion: @escaping ([UIImage]) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var images = [UIImage]()
+        
+        for url in urls {
+            dispatchGroup.enter()
+            
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            images.append(image)
+                            dispatchGroup.leave()
+                        }
+                    }
+                }
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(images)
+        }
+    }
     
     // MARK: For implement localization text
     let identifier = Locale.current.language.languageCode?.identifier == "cs" || Locale.current.language.languageCode?.identifier == "sk" ? "cs" : "en"

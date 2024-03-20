@@ -22,7 +22,8 @@ public struct PekoFrameworkModifier: ViewModifier {
             .pHPickerModifier()
             .sheet(isPresented: $showSharedActivityView) {
                 let items: [Any] = PekoConfigurations.shared.itemsSharedActivityView ?? []
-                SharedActivityView(items: items, showing: $showSharedActivityView)
+                let shareable: ShareableImage? = PekoConfigurations.shared.shareableImageSharedActivityView
+                SharedActivityView(shareable: shareable, items: items, showing: $showSharedActivityView)
             }
             .onReceive(PekoConfigurations.shared.$showToast.dropFirst()) { showToast in
                 self.showToast = showToast

@@ -23,4 +23,8 @@ public extension Array {
         
         return self[index]
     }
+    
+    func getElementAt(index: Int) -> Element? {
+        return (index < self.endIndex) ? self[index] : nil
+    }
 }
