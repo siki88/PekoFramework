@@ -9,7 +9,7 @@ import SwiftUI
 
 #if canImport(UIKit)
 @available(iOS 16.4, *)
-extension View {
+public extension View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder),
@@ -22,7 +22,7 @@ extension View {
 #endif
 
 @available(iOS 16.4, *)
-extension View {
+public extension View {
     @ViewBuilder
     func applyIf<T: View>(_ condition: Bool, apply: (Self) -> T) -> some View {
         if condition {
@@ -45,12 +45,12 @@ extension View {
     func safeOverlay<V: View>(alignment: Alignment, @ViewBuilder content: () -> V) -> some View {
         overlay(alignment: alignment, content: content)
         /*
-        if #available(iOS 16.0, *) {
-            overlay(alignment: alignment, content: content)
-        } else {
-            overlay(content(), alignment: alignment)
-        }
-        */
+         if #available(iOS 16.0, *) {
+         overlay(alignment: alignment, content: content)
+         } else {
+         overlay(content(), alignment: alignment)
+         }
+         */
     }
     
     func placeholder<Content: View>(
@@ -77,7 +77,7 @@ extension View {
     }
 }
 
-extension UIView {
+public extension UIView {
     func allSubviews() -> [UIView] {
         var subs = self.subviews
         for subview in self.subviews {
@@ -92,7 +92,7 @@ extension UIView {
         addSubview(subview)
         activateFillingConstraints(on: subview, edgeInsets: edgeInsets)
     }
-
+    
     func activateFillingConstraints(on subview: UIView, edgeInsets: UIEdgeInsets = .zero) {
         NSLayoutConstraint.activate([
             subview.topAnchor.constraint(equalTo: topAnchor, constant: edgeInsets.top),
@@ -101,7 +101,7 @@ extension UIView {
             subview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: edgeInsets.bottom)
         ])
     }
-
+    
     func activateFillingConstraints(on layoutGuide: UILayoutGuide, edgeInsets: UIEdgeInsets = .zero) {
         NSLayoutConstraint.activate([
             topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: edgeInsets.top),
@@ -109,5 +109,11 @@ extension UIView {
             rightAnchor.constraint(equalTo: layoutGuide.rightAnchor, constant: edgeInsets.right),
             bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: edgeInsets.bottom)
         ])
+    }
+    
+    static func makeSpacer(space: CGFloat) -> UIView {
+        let view = UIView()
+        view.heightAnchor.constraint(equalToConstant: space).isActive = true
+        return view
     }
 }

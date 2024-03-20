@@ -8,15 +8,15 @@
 import SwiftUI
 
 @available(iOS 16.4, *)
-struct Label: View {
-    var text: String
-    var font: Font = Font.system(size: 15)
-    var bold: Bool = false
-    var color: Color = .white
-    var alignment: Alignment = .leading
-    var maxWidth: CGFloat? = .infinity
+public struct Label: View {
+    public var text: String
+    public var font: Font = Font.system(size: 15)
+    public var bold: Bool = false
+    public var color: Color = .white
+    public var alignment: Alignment = .leading
+    public var maxWidth: CGFloat? = .infinity
     
-    var body: some View {
+    public var body: some View {
         Text(text)
             .font(font)
             .foregroundColor(color)

@@ -22,7 +22,7 @@ class NetworkService: ObservableObject {
             .serializingDecodable(T.self).value
     }
     
-    static func universalSortFetchDataCombine<T: Decodable>(
+    static func universalFetchDataCombine<T: Decodable>(
         _ type :T.Type,
         apiRouter: APIRouter,
         queue: DispatchQueue = .main
@@ -34,7 +34,7 @@ class NetworkService: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    static func universalFetchDataCombine<T: Decodable>(
+    static func fetchDataCombine<T: Decodable>(
         _ type :T.Type,
         apiRouter: APIRouter,
         queue: DispatchQueue = .main,

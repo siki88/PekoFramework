@@ -8,8 +8,8 @@
 import UIKit
 
 @available(iOS 16.4, *)
-struct TabBarModifier {
-    static func showTabBar() {
+public struct TabBarModifier {
+    public static func showTabBar() {
         UIApplication.shared.key?.allSubviews().forEach({ subView in
             if let view = subView as? UITabBar {
                 view.isHidden = false
@@ -17,7 +17,7 @@ struct TabBarModifier {
         })
     }
     
-    static func hideTabBar() {
+    public static func hideTabBar() {
         UIApplication.shared.key?.allSubviews().forEach({ subView in
             if let view = subView as? UITabBar {
                 view.isHidden = true

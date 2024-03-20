@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 16.4, *)
-extension Binding {
+public extension Binding {
     func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {
         Binding(get: {
             wrappedValue

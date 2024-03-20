@@ -19,6 +19,16 @@ public class PekoConfigurations: ObservableObject {
         #endif
     }
     
+    @Published var bottomTabbarViewVisible: Bool = true {
+        didSet {
+            if bottomTabbarViewVisible {
+                TabBarModifier.showTabBar()
+            } else {
+                TabBarModifier.hideTabBar()
+            }
+        }
+    }
+    
     // MARK: Toast
     @Published public var showToast: Toast? = nil
     

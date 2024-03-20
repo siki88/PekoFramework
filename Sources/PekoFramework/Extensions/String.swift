@@ -8,7 +8,7 @@
 import Foundation
 
 @available(iOS 16.4, *)
-extension String {
+public extension String {
     
     var toDouble: Double {
         (self as NSString).doubleValue
@@ -43,5 +43,11 @@ extension String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.date(from: self)
+    }
+    
+    func isEmail() -> Bool {
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: self)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit.UIImage
 
 @available(iOS 16.4, *)
-extension Image {
+public extension Image {
     init?(data: Data?) {
         guard let data else { return nil }
         if let uiImage = UIImage(data: data) {
@@ -29,11 +29,11 @@ extension Image {
     }
 }
 
-extension UIImage {
+public extension UIImage {
     var heic: Data? { heic() }
     
     var cgImageOrientation: CGImagePropertyOrientation { .init(imageOrientation) }
-
+    
     
     func heic(compressionQuality: CGFloat = 0.5) -> Data? {
         guard
@@ -50,23 +50,23 @@ extension UIImage {
                 kCGImageDestinationLossyCompressionQuality: compressionQuality,
                 kCGImagePropertyOrientation: cgImageOrientation.rawValue
             ] as CFDictionary)
-
+        
         guard CGImageDestinationFinalize(destination) else { return nil }
         return mutableData as Data
     }
 }
 
-extension CGImagePropertyOrientation {
+public extension CGImagePropertyOrientation {
     init(_ uiOrientation: UIImage.Orientation) {
         switch uiOrientation {
-            case .up: self = .up
-            case .upMirrored: self = .upMirrored
-            case .down: self = .down
-            case .downMirrored: self = .downMirrored
-            case .left: self = .left
-            case .leftMirrored: self = .leftMirrored
-            case .right: self = .right
-            case .rightMirrored: self = .rightMirrored
+        case .up: self = .up
+        case .upMirrored: self = .upMirrored
+        case .down: self = .down
+        case .downMirrored: self = .downMirrored
+        case .left: self = .left
+        case .leftMirrored: self = .leftMirrored
+        case .right: self = .right
+        case .rightMirrored: self = .rightMirrored
         @unknown default:
             fatalError()
         }

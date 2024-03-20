@@ -7,7 +7,7 @@
 
 import UIKit.UIColor
 
-extension UIColor {
+public extension UIColor {
     /// Create color from a hex string (starting with #)..
     convenience init(hexString: String, alpha: CGFloat = 1) {
         let chars = Array(hexString.dropFirst())
@@ -18,13 +18,13 @@ extension UIColor {
             alpha: alpha
         )
     }
-
+    
     var hexString: String {
         let components = cgColor.components
         let redComponent: CGFloat = components?[0] ?? 0.0
         let greenComponent: CGFloat = components?[1] ?? 0.0
         let blueComponent: CGFloat = components?[2] ?? 0.0
-
+        
         return String(
             format: "#%02lX%02lX%02lX",
             lroundf(Float(redComponent * 255)),

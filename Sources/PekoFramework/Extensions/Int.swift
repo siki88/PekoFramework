@@ -7,8 +7,18 @@
 
 import Foundation
 
-extension Int {
+public extension Int {
     var toString: String {
         "\(self)"
+    }
+    
+    var toDouble: Double {
+        return Double(self)
+    }
+}
+
+public extension CGFloat {
+    var toDouble: Double {
+        return Double(self)
     }
 }
