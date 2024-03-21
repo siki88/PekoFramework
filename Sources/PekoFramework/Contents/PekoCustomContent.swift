@@ -102,7 +102,7 @@ public struct PekoCustomContent<Content: View>: View {
                 .scrollDisabled(disableScroll)
             }
         }
-        .ignoresSafeArea(.keyboard)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
     
     private func isLandscapeView() -> some View {

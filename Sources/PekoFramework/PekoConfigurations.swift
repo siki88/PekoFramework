@@ -19,6 +19,15 @@ public class PekoConfigurations: ObservableObject {
         #endif
     }
     
+    @State var floatingLabelTextFieldBorderColor: Color = .black
+    @State var floatingLabelTextFieldStyle: FloatingLabelTextFieldStyle.TitleStyle = .init(
+        text: "",
+        font: .system(size: 15),
+        floatingFont: .system(size: 12),
+        color: .black,
+        floatingColor: .gray
+    )
+    
     @Published var bottomTabbarViewVisible: Bool = true {
         didSet {
             if bottomTabbarViewVisible {

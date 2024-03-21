@@ -123,7 +123,7 @@ public struct PekoNavigationContent<NavigationContent: View, Content: View>: Vie
                 .scrollDisabled(disableScroll)
             }
         }
-        .ignoresSafeArea(.keyboard)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
     
     private func isLandscapeView() -> some View {
