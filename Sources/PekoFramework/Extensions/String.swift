@@ -5,7 +5,7 @@
 //  Created by Lukáš Spurný on 18.03.2024.
 //
 
-import Foundation
+import SwiftUI
 
 @available(iOS 16.4, *)
 public extension String {
@@ -89,5 +89,35 @@ public extension String {
         let firstLetter = self[..<index]
         let restOfString = self[index...]
         return firstLetter.uppercased() + restOfString
+    }
+    
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else {
+            return nil
+        }
+        do {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .right
+            
+            let content = try NSMutableAttributedString(
+                data: data,
+                options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue
+                ],
+                documentAttributes: nil)
+            
+            content.addAttributes(
+                [
+                    NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18),
+                    NSAttributedString.Key.foregroundColor: UIApplication.shared.userInterfaceStyle == .light ? Color.black : Color.white
+                ],
+                range: NSMakeRange(0, content.length))
+            
+            return content
+        } catch {
+            return nil
+        }
     }
 }
