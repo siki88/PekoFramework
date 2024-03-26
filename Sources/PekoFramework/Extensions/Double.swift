@@ -52,10 +52,3 @@ public extension Optional where Wrapped == Double {
         "\(Int(self ?? 0))".toDouble.localeFormatter
     }
 }
-
-@available(iOS 16.4, *)
-public extension Int {
-    var toDoubleLocaleFormatter: String {
-        "\(self)".toDouble.localeFormatter
-    }
-}
