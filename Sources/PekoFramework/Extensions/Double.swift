@@ -45,3 +45,17 @@ public extension Decimal {
         Double(truncating: self as NSNumber)
     }
 }
+
+@available(iOS 16.4, *)
+public extension Optional where Wrapped == Double {
+    var toDoubleLocaleFormatter: String {
+        "\(Int(self ?? 0))".toDouble.localeFormatter
+    }
+}
+
+@available(iOS 16.4, *)
+public extension Int {
+    var toDoubleLocaleFormatter: String {
+        "\(self)".toDouble.localeFormatter
+    }
+}
