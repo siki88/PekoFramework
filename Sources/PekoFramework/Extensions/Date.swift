@@ -68,4 +68,10 @@ public extension Date {
         let minutes = calendar.component(.minute, from: self)
         return "\(hour):\(String(format: "%02d", minutes))"
     }
+    
+    func asString(style: DateFormatter.Style) -> String {
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateStyle = style
+      return dateFormatter.string(from: self)
+    }
 }

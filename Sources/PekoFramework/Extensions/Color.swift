@@ -8,6 +8,13 @@
 import UIKit.UIColor
 
 public extension UIColor {
+    convenience init<T: BinaryInteger>(r: T, g: T, b: T, a: T = 255) {
+        self.init(red: .init(r)/255, green: .init(g)/255, blue: .init(b)/255, alpha: .init(a)/255)
+    }
+    convenience init<T: BinaryFloatingPoint>(r: T, g: T, b: T, a: T = 1.0) {
+        self.init(red: .init(r), green: .init(g), blue: .init(b), alpha: .init(a))
+    }
+    
     /// Create color from a hex string (starting with #)..
     convenience init(hexString: String, alpha: CGFloat = 1) {
         let chars = Array(hexString.dropFirst())

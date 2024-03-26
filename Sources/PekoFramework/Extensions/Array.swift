@@ -27,4 +27,20 @@ public extension Array {
     func getElementAt(index: Int) -> Element? {
         return (index < self.endIndex) ? self[index] : nil
     }
+    
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+    
+    func unique(selector:(Element,Element)->Bool) -> Array<Element> {
+        return reduce(Array<Element>()){
+            if let last = $0.last {
+                return selector(last,$1) ? $0 : $0 + [$1]
+            } else {
+                return [$1]
+            }
+        }
+    }
 }
