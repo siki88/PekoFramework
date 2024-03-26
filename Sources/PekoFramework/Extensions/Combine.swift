@@ -35,13 +35,13 @@ public struct ZipMany<Element, Failure>: Publisher where Failure: Error {
 
 @available(iOS 16.4, *)
 public class PublishedValue<T>: ObservableObject {
-    @Published var value: T
+    @Published public  var value: T
     
-    init(_ value: T) {
+    public init(_ value: T) {
         self.value = value
     }
     
-    func set(_ value: T) {
+    public func set(_ value: T) {
         self.value = value
     }
 }
